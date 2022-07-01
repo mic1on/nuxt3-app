@@ -1,10 +1,12 @@
 <template>
   <div>
-    <n-button type="primary" size="medium">123</n-button>
-    <nuxt-link to="/work">work</nuxt-link>
-    <NuxtPage />
+    <n-config-provider inline-theme-disabled>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </n-config-provider>
   </div>
 </template>
 <script setup>
-import { NButton } from 'naive-ui';
+import { NConfigProvider } from 'naive-ui';
 </script>
