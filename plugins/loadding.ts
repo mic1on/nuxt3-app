@@ -2,6 +2,11 @@ import { createDiscreteApi } from 'naive-ui';
 
 export default defineNuxtPlugin((nuxtApp) => {
     let bar = ref(null);
+    const _finish = () => {
+        setTimeout(() => {
+            bar.value?.finish();
+        }, 150);
+    }
     nuxtApp.hook('app:mounted', () => {
         const { loadingBar } = createDiscreteApi(['loadingBar'])
         bar.value = loadingBar;
@@ -10,9 +15,11 @@ export default defineNuxtPlugin((nuxtApp) => {
         bar.value?.start();
     }),
     nuxtApp.hook('page:finish', () => {
-        setTimeout(() => {
-            bar.value?.finish();
-        }, 150);
+        _finish()
     }),
-    nuxtApp.hook('app:error', () => {})
+    nuxtApp.hook('app:error', () => {
+        if (process.client) {
+            _finish()
+        }
+    })
 })
