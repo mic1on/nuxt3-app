@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-[80px]">
     <n-result status="500" title="异常出错" :description="error.message">
     <template #footer>
       <n-button>回到首页</n-button>
